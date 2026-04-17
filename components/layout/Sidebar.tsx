@@ -9,6 +9,7 @@ import {
   Network,
   LayoutDashboard,
   Brain,
+  Layers,
 } from 'lucide-react';
 
 const navItems = [
@@ -21,6 +22,11 @@ const navItems = [
     href: '/analyze',
     label: 'BRD Analyzer',
     icon: FileText,
+  },
+  {
+    href: '/docs',
+    label: 'Architecture Docs',
+    icon: Layers,
   },
   {
     href: '/chat',

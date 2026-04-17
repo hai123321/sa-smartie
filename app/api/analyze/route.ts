@@ -25,7 +25,7 @@ export async function POST(req: NextRequest) {
     const rawResponse = await callClaude(
       BRD_ANALYSIS_SYSTEM_PROMPT,
       buildBrdAnalysisPrompt(content, analysisTitle),
-      { maxTokens: 8192 }
+      { maxTokens: 8192, tier: 'smart' }   // analysis — Sonnet
     );
 
     const analysis = parseBrdAnalysisResponse(rawResponse, analysisTitle, content);

@@ -66,6 +66,11 @@ export default function AnalyzePage() {
     router.push(`/chat?analysisId=${currentAnalysis.id}`);
   }
 
+  function handleStartSession() {
+    if (!currentAnalysis) return;
+    router.push(`/session/${currentAnalysis.id}`);
+  }
+
   return (
     <div className="flex h-full overflow-hidden">
       {/* Sidebar: history */}
@@ -148,6 +153,7 @@ export default function AnalyzePage() {
                 analysis={currentAnalysis}
                 onExport={handleExport}
                 onDiscussWithAI={handleDiscussWithAI}
+                onStartSession={handleStartSession}
               />
             </div>
           )}

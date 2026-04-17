@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { BrdAnalysisMeta } from '@/types/analysis';
 import { ConversationMeta } from '@/types/chat';
 import { System } from '@/types/inventory';
-import { FileText, MessageSquare, Network, Plus, ArrowRight, Brain } from 'lucide-react';
+import { FileText, MessageSquare, Network, Plus, ArrowRight, Brain, Layers } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
@@ -55,7 +55,7 @@ export default function DashboardPage() {
         </div>
 
         {/* Quick actions */}
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-2 gap-4">
           {[
             {
               href: '/analyze',
@@ -65,18 +65,18 @@ export default function DashboardPage() {
               color: 'bg-blue-50 text-blue-600',
             },
             {
+              href: '/docs',
+              icon: Layers,
+              title: 'Architecture Docs',
+              desc: 'PO session → enrich BRD → generate & cascade docs',
+              color: 'bg-amber-50 text-amber-600',
+            },
+            {
               href: '/chat',
               icon: MessageSquare,
               title: 'Architecture Q&A',
               desc: 'Chat with AI about your architecture',
               color: 'bg-violet-50 text-violet-600',
-            },
-            {
-              href: '/inventory',
-              icon: Network,
-              title: 'System Inventory',
-              desc: 'Manage and visualize your systems',
-              color: 'bg-teal-50 text-teal-600',
             },
           ].map((item) => {
             const Icon = item.icon;

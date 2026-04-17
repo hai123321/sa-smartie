@@ -7,13 +7,14 @@ import { Button } from '@/components/ui/button';
 import { QuestionCard } from './QuestionCard';
 import { BrdAnalysis, QuestionCategory } from '@/types/analysis';
 import {
-  Download, MessageSquare, AlertTriangle, Info, CheckCircle2
+  Download, MessageSquare, AlertTriangle, Info, CheckCircle2, Users
 } from 'lucide-react';
 
 interface AnalysisResultProps {
   analysis: BrdAnalysis;
   onExport: () => void;
   onDiscussWithAI?: () => void;
+  onStartSession?: () => void;
 }
 
 const categoryConfig: Record<QuestionCategory, { label: string; color: string }> = {
@@ -25,7 +26,7 @@ const categoryConfig: Record<QuestionCategory, { label: string; color: string }>
 
 const priorityOrder = { critical: 0, important: 1, 'nice-to-have': 2 };
 
-export function AnalysisResult({ analysis, onExport, onDiscussWithAI }: AnalysisResultProps) {
+export function AnalysisResult({ analysis, onExport, onDiscussWithAI, onStartSession }: AnalysisResultProps) {
   const criticalCount = analysis.questions.filter(q => q.priority === 'critical').length;
   const importantCount = analysis.questions.filter(q => q.priority === 'important').length;
   const nthCount = analysis.questions.filter(q => q.priority === 'nice-to-have').length;
@@ -64,16 +65,22 @@ export function AnalysisResult({ analysis, onExport, onDiscussWithAI }: Analysis
             {nthCount} Nice-to-have
           </Badge>
         </div>
-        <div className="ml-auto flex gap-2">
+        <div className="ml-auto flex gap-2 flex-wrap">
+          {onStartSession && (
+            <Button size="sm" onClick={onStartSession} className="gap-1.5 bg-primary">
+              <Users className="h-3.5 w-3.5" />
+              Start PO Session
+            </Button>
+          )}
           {onDiscussWithAI && (
             <Button variant="outline" size="sm" onClick={onDiscussWithAI}>
               <MessageSquare className="mr-1.5 h-3.5 w-3.5" />
               Discuss with AI
             </Button>
           )}
-          <Button size="sm" onClick={onExport}>
+          <Button variant="outline" size="sm" onClick={onExport}>
             <Download className="mr-1.5 h-3.5 w-3.5" />
-            Export Markdown
+            Export
           </Button>
         </div>
       </div>
